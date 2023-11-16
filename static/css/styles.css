@@ -1,0 +1,217 @@
+/* styles.css */
+:root {
+    --bs-primary: #e91e63;
+    --bs-primary-rgb: 233, 30, 99;
+}
+
+body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    margin: 0;
+    font-size: 1rem;
+    color: #495057;
+    text-align: left;
+    background-color: #f0f2f5;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border: 0;
+    border-width: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    background-color: #fff;
+    background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
+    border-radius: 0.75rem;
+    transition: all 0.2s ease-in-out;
+    z-index: 9999;
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 15.625rem;
+    overflow-y: auto;
+    padding: 20px;
+    margin-top: 5%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    left: 0;
+}
+
+.sidebar-button {
+    color: #fff; /* Default black color */
+    background: transparent;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    transition: background 0.3s ease-in-out; /* Smooth transition for background */
+}
+
+.sidebar-button:hover {
+    background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+    /* color: #fff; Change text color to white on hover */
+}
+
+
+.main-content {
+    width: 80%;
+    box-sizing: border-box;
+    font-family: var(--bs-font-sans-serif);
+    font-size: var(--bs-body-font-size);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-weight: 400;
+    line-height: 1.6;
+    background-color: var(--bs-body-bg);
+    box-sizing: border-box;
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-weight: 400;
+    line-height: 1.6;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    /* padding-right: var(--bs-gutter-x); */
+    /* padding-left: var(--bs-gutter-x); */
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    background-color: #f0f2f5; /* Set the background color to #f0f2f5 */
+}
+
+
+.with-sidebar .main-content {
+    padding-left: 16.25rem;
+}
+
+
+.card {
+    width: 80%;
+    margin: 0 auto;
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    border-radius: var(--bs-card-border-radius);
+    box-shadow: var(--bs-card-box-shadow);
+    margin-top: var(--bs-card-cap-padding-y) !important;
+    padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+}
+
+h1 {
+    text-align: center;
+    margin-top: var(--bs-card-cap-padding-y) !important;
+    color: var(--bs-primary);
+    font-size: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--bs-card-spacer-y);
+}
+
+th, td {
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    text-align: left;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    vertical-align: middle; /* Vertically align table entries */
+}
+
+th {
+    background-color: var(--bs-gray-200);
+    font-weight: lighter; /* Lighter font for table header text */
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid var(--bs-card-border-color); /* Horizontal separator between table rows */
+    margin-bottom: 1rem; /* Add some space between table rows */
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--bs-card-spacer-y);
+}
+
+.btn {
+    background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+    color: var(--bs-white);
+    border: none;
+    border-radius: var(--bs-border-radius-sm);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%); /* Same gradient on hover */
+}
+
+.no-data-message {
+    color: var(--bs-gray);
+}
+/* Add these styles to your existing CSS file or create a new one */
+
+/* Header Styles */
+.header {
+    background-color: #333;
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    display: flex;
+}
+
+#search {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+#search-btn {
+    padding: 5px 10px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* Profile Section Styles */
+.profile-section {
+    display: flex;
+    align-items: center;
+}
+
+.profile-section span {
+    margin-right: 10px;
+}
+
+.profile-section a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.profile-section a:hover {
+    background-color: #555;
+}
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seller List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn {
+            background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+            color: var(--bs-white);
+            border: none;
+            border-radius: var(--bs-border-radius-sm);
+            padding: 0.5rem 1rem;
+            margin: 2px;
+            cursor: pointer;
+            transition: background 0.3s; /* Add transition for smooth hover effect */
+        }
+        .btn:hover {
+            background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%); /* Same gradient on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>List of Sellers</h1>
+        <button class="btn" id="createSellerBtn">Add Seller</button>
+    </div>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Current Address</th>
+            <th>Area Zip Code</th>
+            <th>Email</th>
+            <th>Budget</th>
+            <th>Actions</th>
+        </tr>
+        {% for seller in sellers %}
+        <tr>                
+            <td>{{ seller.first_name }}</td>
+            <td>{{ seller.last_name }}</td>
+            <td>{{ seller.current_address }}</td>
+            <td>{{ seller.area_zip_code }}</td>
+            <td>{{ seller.email }}</td>
+            <td>{{ seller.budget }}</td>
+            <td>
+                <button class="btn" onclick="editBlog({{ blog.id }})">Edit</button>
+                <button class="btn" onclick="deleteBlog({{ blog.id }})">Delete</button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No sellers available.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        document.getElementById("createSellerBtn").addEventListener("click", function() {
+            window.location.href = "http://127.0.0.1:8000/create_seller/";
+        });
+    </script>
+</body>
+</html>

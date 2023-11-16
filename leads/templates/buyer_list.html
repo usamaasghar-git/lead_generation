@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buyer List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn {
+            background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+            color: var(--bs-white);
+            border: none;
+            border-radius: var(--bs-border-radius-sm);
+            padding: 0.5rem 1rem;
+            margin: 2px;
+            cursor: pointer;
+            transition: background 0.3s; /* Add transition for smooth hover effect */
+        }
+        .btn:hover {
+            background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%); /* Same gradient on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>List of Buyers</h1>
+        <button class="btn" id="createBuyerBtn">Add Buyer</button>
+    </div>
+    <table id="buyersTable">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Current Address</th>
+            <th>Area Zip Code</th>
+            <th>Email</th>
+            <th>Budget</th>
+            <th>Actions</th>
+        </tr>
+        {% for buyer in buyers %}
+        <tr data-buyer-id="{{ buyer.id }}">
+            <td>{{ buyer.first_name }}</td>
+            <td>{{ buyer.last_name }}</td>
+            <td>{{ buyer.current_address }}</td>
+            <td>{{ buyer.area_zip_code }}</td>
+            <td>{{ buyer.email }}</td>
+            <td>{{ buyer.budget }}</td>
+            <td>
+                <button class="btn" onclick="editBlog({{ blog.id }})">Edit</button>
+                <button class="btn" onclick="deleteBlog({{ blog.id }})">Delete</button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No buyers available.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        function loadContent(url) {
+            $.get(url, function(data) {
+                $('#main-content').html(data);
+            });
+        }
+        $('#createBuyerBtn').click(function() {
+            loadContent('http://127.0.0.1:8000/create_buyer/');
+        });
+        {% comment %} document.getElementById("createBuyerBtn").addEventListener("click", function() {
+            window.location.href = "http://127.0.0.1:8000/create_buyer/";
+        });
+
+        // Fetch CSRF token from cookies
+        function getCSRFToken() {
+            const cookieValue = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('csrftoken='))
+                .split('=')[1];
+            return cookieValue;
+        }
+
+        const buyersTable = document.getElementById("buyersTable");
+
+        buyersTable.addEventListener("click", function(event) {
+            const target = event.target;
+            if (target.classList.contains("editBtn")) {
+                const buyerId = target.parentElement.parentElement.getAttribute("data-buyer-id");
+                window.location.href = `http://127.0.0.1:8000/edit_buyer/${buyerId}/`;
+            } else if (target.classList.contains("deleteBtn")) {
+                const buyerId = target.parentElement.parentElement.getAttribute("data-buyer-id");
+                const csrfToken = getCSRFToken();
+                fetch(`http://127.0.0.1:8000/api/buyers/${buyerId}/`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrfToken,
+                    },
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+            }
+        }); {% endcomment %}
+    </script>
+</body>
+</html>

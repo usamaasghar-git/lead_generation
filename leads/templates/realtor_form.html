@@ -1,0 +1,69 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtor Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/form_styles.css' %}">
+</head>
+<body>
+    <h1>Realtor Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.current_address.label_tag }}
+            {{ form.current_address }}
+            {{ form.current_address.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.area_zip_code.label_tag }}
+            {{ form.area_zip_code }}
+            {{ form.area_zip_code.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.budget.label_tag }}
+            {{ form.budget }}
+            {{ form.budget.errors }}
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+    $(document).ready(function() {
+        $('#submitForm').click(function() {
+            // Serialize the form data
+            var formData = $('#realtorForm').serialize();
+
+            // Make an AJAX request to your API endpoint
+            $.ajax({
+                url: 'http://127.0.0.1:8000/create_realtor/',  // Replace with your actual API endpoint
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Handle the success response, e.g., redirect to dashboard
+                    console.log(response);
+                    window.location.href = 'http://127.0.0.1:8000/dashboard/';
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                    // Handle the error if needed
+                }
+            });
+        });
+    });
+</script>
+</body>

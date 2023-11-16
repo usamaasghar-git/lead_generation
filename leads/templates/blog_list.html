@@ -1,0 +1,113 @@
+<head>
+    <title>Blog List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn {
+            background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+            color: var(--bs-white);
+            border: none;
+            border-radius: var(--bs-border-radius-sm);
+            padding: 0.5rem 1rem;
+            margin: 2px;
+            cursor: pointer;
+            transition: background 0.3s; /* Add transition for smooth hover effect */
+        }
+        .btn:hover {
+            background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%); /* Same gradient on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>List of Blogs</h1>
+        <button class="btn" id="createBlogBtn">Add Blog</button>
+    </div>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Actions</th>
+        </tr>
+        {% for blog in blogs %}
+        <tr>
+            <td>{{ blog.title }}</td>
+            <td>{{ blog.content }}</td>
+            <td>
+                <button class="btn" onclick="editBlog({{ blog.id }})">Edit</button>
+                <button class="btn" onclick="deleteBlog({{ blog.id }})">Delete</button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No blog post available.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        function loadContent(url) {
+            $.get(url, function(data) {
+                $('#main-content').html(data);
+            });
+        }
+        $('#createBuyerBtn').click(function() {
+            loadContent('http://127.0.0.1:8000/create_blog/');
+        });
+        {% comment %} document.getElementById("createBlogBtn").addEventListener("click", function() {
+            window.location.href = "http://127.0.0.1:8000/create_blog/";
+        });
+
+        function editBlog(blogId) {
+            // Perform edit operation, e.g., redirect to edit page with blogId
+            window.location.href = `/edit_blog/${blogId}/`;
+        }
+
+        function deleteBlog(blogId) {
+            // Perform delete operation, e.g., send a DELETE request to the server
+            fetch(`/api/blogs/${blogId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')  // Include CSRF token in the headers
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Blog deleted successfully, you can handle this as needed, e.g., refresh the page
+                    window.location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        } {% endcomment %}
+    </script>
+</body>
+</html>

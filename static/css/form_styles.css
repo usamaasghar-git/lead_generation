@@ -1,0 +1,55 @@
+/* static/css/realtor_form_styles.css */
+
+/* Existing styles from your original CSS */
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+form {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+/* Additional styles for theme consistency */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    color: #007bff; /* Bootstrap's primary color */
+}
+
+button:hover {
+    background-color: #0056b3; /* Slightly darker shade for hover effect */
+}

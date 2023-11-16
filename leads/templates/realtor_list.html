@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Realtor List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn {
+            background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+            color: var(--bs-white);
+            border: none;
+            border-radius: var(--bs-border-radius-sm);
+            padding: 0.5rem 1rem;
+            margin: 2px;
+            cursor: pointer;
+            transition: background 0.3s; /* Add transition for smooth hover effect */
+        }
+        .btn:hover {
+            background: linear-gradient(195deg, #EC407A 0%, #D81B60 100%); /* Same gradient on hover */
+        }
+        
+        .btn-edit {
+            background-color: var(--bs-success);
+        }
+        
+        .btn-delete {
+            background-color: var(--bs-danger);
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>List of Realtors</h1>
+        <button class="btn" id="createRealtorBtn">Add Realtor</button>
+    </div>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Current Address</th>
+            <th>Area Zip Code</th>
+            <th>Email</th>
+            <th>Subscription</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+        {% for realtor in realtors %}
+        <tr>                
+            <td>{{ realtor.first_name }}</td>
+            <td>{{ realtor.last_name }}</td>
+            <td>{{ realtor.current_address }}</td>
+            <td>{{ realtor.area_zip_code }}</td>
+            <td>{{ realtor.email }}</td>
+            <td>{{ realtor.subscription }}</td>
+            <td>{{ realtor.rating }}</td>
+            <td>
+                <button class="btn" onclick="editBlog({{ blog.id }})">Edit</button>
+                <button class="btn" onclick="deleteBlog({{ blog.id }})">Delete</button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No realtors available.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        function loadContent(url) {
+            $.get(url, function(data) {
+                $('#main-content').html(data);
+            });
+        }
+        $('#createRealtorBtn').click(function() {
+            loadContent('http://127.0.0.1:8000/create_realtor/');
+        });
+    </script>
+</body>
+</html>
